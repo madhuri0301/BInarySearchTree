@@ -4,47 +4,69 @@ using System.Text;
 
 namespace BinarySearchTree
 {
-    class BST<T> where T : IComparable
+    public class BST<T> where T : IComparable<T>
     {
-        T NodeData;
-        public BST<T> leftTree { get; set; }
-        public BST<T> rightTree { get; set; }
-        public BST(T NodeData)
+        public T NodeData { get; set; }
+        public BST<T> LeftTree { get; set; }
+        public BST<T> RightTree { get; set; }
+        public BST(T nodeData)
         {
-            this.NodeData = NodeData;
-            leftTree = null;
-            rightTree = null;
+            this.NodeData = nodeData;
+            this.LeftTree = null;
+            this.RightTree = null;
         }
+
+        int leftCount = 0, rightCount = 0;
+
+        /// <summary>
+        /// Insert Node to Binary Search Tree
+        /// </summary>
+        /// <param name="item">Node of tree</param>
         public void Insert(T item)
         {
             T currentNodeValue = this.NodeData;
-            if ((currentNodeValue.CompareTo(item)) > 0)
+            if (currentNodeValue.CompareTo(item) > 0)
             {
-                if (leftTree == null)
-                    leftTree = new BST<T>(item);
+                if (this.LeftTree == null)
+                    this.LeftTree = new BST<T>(item);
                 else
-                    leftTree.Insert(item);
+                    this.LeftTree.Insert(item);
             }
             else
             {
-                if (rightTree == null)
-                    rightTree = new BST<T>(item);
+                if (this.RightTree == null)
+                    this.RightTree = new BST<T>(item);
                 else
-                    rightTree.Insert(item);
+                    this.RightTree.Insert(item);
             }
         }
+
+        /// <summary>
+        /// Get size of Binary Search Tree
+        /// </summary>
+        public void GetSize()
+        {
+            Console.WriteLine("Size" + " " + (1 + this.leftCount + this.rightCount));
+        }
+
+        /// <summary>
+        /// Display Binary Search Tree
+        /// </summary>
         public void Display()
         {
-            if (leftTree != null)
+            if (this.LeftTree != null)
             {
-                leftTree.Display();
+                this.leftCount++;
+                this.LeftTree.Display();
             }
-            Console.WriteLine(NodeData.ToString());
-            if (rightTree != null)
+            Console.WriteLine(this.NodeData.ToString());
+            if (this.RightTree != null)
             {
-                rightTree.Display();
+                this.rightCount++;
+                this.RightTree.Display();
             }
         }
+
 
     }
 }
