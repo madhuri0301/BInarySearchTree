@@ -8,7 +8,7 @@ namespace BinarySearchTree
         {
             Console.WriteLine("Welcome To The Binary Search tree Program");
             {
-                BST<int> bst = new BST<int>(56); //
+                BST<int> bst = new BST<int>(56); //Tree Starts With
                 bst.Insert(30);
                 bst.Insert(70);
                 bst.Insert(22);
@@ -21,9 +21,11 @@ namespace BinarySearchTree
                 bst.Insert(16);
                 bst.Insert(63);
                 bst.Insert(67);
-                bst.Insert(70);            
                 bst.Insert(70);
+                bst.Display();
                 bst.GetSize();
+                bool result = bst.IfExist(67, bst); //Element To Search
+                Console.WriteLine(result);
             }
         }
     }
